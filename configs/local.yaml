@@ -1,0 +1,3 @@
+syncPairs:
+  - src: test/src
+    dest: test/dest
