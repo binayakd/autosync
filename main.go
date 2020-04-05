@@ -5,5 +5,8 @@ import (
 )
 
 func main() {
-	cmd.RunScheduler()
+	c := cmd.GetConf()
+	cmd.RunSchedulerWithCrontab(&c)
+	for {
+	}
 }

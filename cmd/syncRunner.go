@@ -5,10 +5,8 @@ import (
 	"os/exec"
 )
 
-func RunSync() {
-
+func RunSync(c *Conf) {
 	log.Printf("********* Staring Sync *********")
-	c := GetConf()
 	for int, entry := range c.SyncPairs {
 		log.Printf("Sync Pair %v - src: %v, dest: %v", int+1, entry.Src, entry.Dest)
 		command := exec.Command("rclone", "sync", entry.Src, entry.Dest, "-P")
@@ -19,5 +17,5 @@ func RunSync() {
 		}
 
 	}
-	log.Printf("--------- Sync complete --------")
+	log.Printf("--------- Sync complete --------\n\n")
 }

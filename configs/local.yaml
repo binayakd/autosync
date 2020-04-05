@@ -1,3 +1,4 @@
+syncCron: "* * * * *"
 syncPairs:
-  - src: test/src
-    dest: test/dest
+  - src: data/test/src
+    dest: data/test/dest

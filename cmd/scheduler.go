@@ -1,14 +1,21 @@
 package cmd
 
 import (
-	"time"
+	"log"
 
-	"github.com/go-co-op/gocron"
+	"github.com/mileusna/crontab"
 )
 
-func RunScheduler() {
+// func RunSchedulerWithGoCron() {
 
-	s1 := gocron.NewScheduler(time.Local)
-	s1.Every(10).Seconds().At("00:00").Do(RunSync)
-	<-s1.Start()
+// 	s1 := gocron.NewScheduler(time.Local)
+// 	s1.Every(10).Seconds().At("00:00").Do(RunSync)
+// 	<-s1.Start()
+// }
+
+func RunSchedulerWithCrontab(c *Conf) {
+	log.Printf("Starting Scheduler with crontab: %s", c.SyncCron)
+	cron := crontab.New()
+	cron.MustAddJob(c.SyncCron, RunSync, c)
+
 }

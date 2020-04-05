@@ -1,0 +1,6 @@
+syncCron: "0 4 * * *"
+syncPairs:
+  - src: "onedrive:"
+    dest: "data/volumes/8tbv01/onedrive"
+  - src: "data/binayak/volumes/photo-drive/SLR"
+    dest: "data/volumes/8tbv01/SLR"

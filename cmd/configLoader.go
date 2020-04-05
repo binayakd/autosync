@@ -4,11 +4,13 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
 
 	"gopkg.in/yaml.v2"
 )
 
 type Conf struct {
+	SyncCron  string     `yaml:"syncCron"`
 	SyncPairs []SyncPair `yaml:"syncPairs"`
 }
 type SyncPair struct {
@@ -23,8 +25,14 @@ func GetConf() Conf {
 	if len(env) == 0 {
 		env = "local"
 	}
+
+	configPath := os.Getenv("CONFIG_PATH")
+	if len(configPath) == 0 {
+		configPath = "configs"
+	}
+
 	log.Printf("ENV: " + env + "...")
-	confFilePath := "configs/" + env + ".yaml"
+	confFilePath := path.Join(configPath, env) + ".yaml"
 	log.Printf("Reading config file " + confFilePath + "....")
 	c := Conf{}
 	configFile, err := ioutil.ReadFile(confFilePath)
